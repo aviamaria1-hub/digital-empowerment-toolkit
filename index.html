@@ -852,9 +852,9 @@
     <p class="section-desc">Choose your path below — each tab has hand-picked, free resources just for you.</p>
 
     <div class="resource-tabs">
-      <button class="tab-btn active" onclick="showTab('entrepreneurs')">💼 Entrepreneurs</button>
-      <button class="tab-btn" onclick="showTab('parents')">🏠 Parents & Guardians</button>
-      <button class="tab-btn" onclick="showTab('students')">🎓 Students</button>
+      <button class="tab-btn active" onclick="showTab('entrepreneurs', this)">💼 Entrepreneurs</button>
+      <button class="tab-btn" onclick="showTab('parents', this)">🏠 Parents & Guardians</button>
+      <button class="tab-btn" onclick="showTab('students', this)">🎓 Students</button>
     </div>
 
     <!-- ENTREPRENEURS -->
@@ -996,11 +996,11 @@
         </p>
 
         <div class="speaker-contact">
-          <a href="/cdn-cgi/l/email-protection#1d786b72716b787f686e7473786e6e6e727168697472736e74737e5d7a707c7471337e7270" class="contact-item">
+          <a href="javascript:void(0)" onclick="openEmail()" class="contact-item">
             <div class="contact-icon" style="background:rgba(74,14,107,.1); color:var(--plum)">✉️</div>
             <div>
               <span class="contact-label">Email</span>
-              <span class="contact-value"><span class="__cf_email__" data-cfemail="bdd8cbd2d1cbd8dfc8ced4d3d8cececed2d1c8c9d4d2d3ced4d3defddad0dcd4d193ded2d0">[email&#160;protected]</span></span>
+              <span class="contact-value" id="email-display">Click to email us</span>
             </div>
           </a>
           <a href="https://wa.me/5927103356" target="_blank" rel="noopener" class="contact-item">
@@ -1051,12 +1051,20 @@
   <p style="margin-top:10px;">Free to share. Free to use. Built for every woman ready to rise. 🌟</p>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  function showTab(id) {
+<script>
+  function showTab(id, el) {
     document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
     document.getElementById('tab-' + id).classList.add('active');
-    event.target.classList.add('active');
+    if (el) el.classList.add('active');
+  }
+
+  function openEmail() {
+    var u = 'evolvebusinesssolutionsinc';
+    var d = 'gmail.com';
+    var e = u + '@' + d;
+    document.getElementById('email-display').textContent = e;
+    window.location.href = 'mailto:' + e;
   }
 
   // ── DONUT CHART ──
